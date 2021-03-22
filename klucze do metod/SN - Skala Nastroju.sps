@@ -1,0 +1,150 @@
+﻿* Encoding: UTF-8.
+
+****************************************************************************************************************
+* Skala Nastroju (SN)
+****************************************************************************************************************
+
+compute SN_OPN = sum(SN3, SN8, SN13, SN25, SN31, SN37, SN39, SN47, SN52, SN55).
+compute SN_ONN = sum(SN11, SN18, SN26, SN32, SN34, SN38, SN40, SN42, SN44, SN50).
+compute SN_ST = sum(SN18, SN21, SN34, SN40, SN44, SN53).
+compute SN_WRO = sum(SN2, SN9, SN11, SN37, SN38, SN56).
+compute SN_WI = sum(SN15, SN32, SN42, SN46, SN51, SN60).
+compute SN_SMU = sum(SN16, SN24, SN29, SN35, SN48).
+compute SN_DOB = sum(SN1, SN12, SN22, SN33, SN37, SN41, SN47, SN58).
+compute SN_PS = sum(SN6, SN8, SN14, SN28, SN39, SN57).
+compute SN_UW = sum(SN3, SN25, SN52, SN59).
+compute SN_NIES = sum(SN4, SN23, SN30, SN49).
+compute SN_ZME = sum(SN5, SN19, SN36, SN45).
+compute SN_SPO = sum(SN10, SN17, SN43).
+compute SN_ZDZ = sum(SN7, SN20, SN54).
+compute SN_PEP = (sum(SN_DOB, SN_PS, SN_UW)) / 3.
+compute SN_PEN = (sum(SN_SMU, SN_WI, SN_WRO, SN_ST)) / 4.
+execute.
+
+VARIABLE LABELS  
+SN_OPN 'Ogólny pozytywny nastrój' SN_ONN 'Ogólny negatywny nastrój' SN_ST 'Strach' SN_WRO 'Wrogość'
+SN_WI 'Wina'  SN_SMU 'Smutek' SN_DOB 'Dobroduszność' SN_PS 'Pewność siebie' SN_UW 'Uważność'
+SN_NIES 'Nieśmiałość' SN_ZME 'Zmęczenie' SN_SPO 'Spokój' SN_ZDZ 'Zdziwienie' 
+SN_PEP 'Podstawowe emocje pozytywne' SN_PEN 'Podstawowe emocje negatywne'.
+execute.
+
+
+SET Printback=ON.
+
+*******************************************************************************
+* Ogólny pozytywny nastrój
+
+RELIABILITY
+  /VARIABLES=SN3 SN8 SN13 SN25 SN31 SN37 SN39 SN47 SN52 SN55
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+* Ogólny negatywny nastrój
+
+RELIABILITY
+  /VARIABLES=SN11 SN18 SN26 SN32 SN34 SN38 SN40 SN42 SN44 SN50
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+* Strach
+
+RELIABILITY
+  /VARIABLES=SN18 SN21 SN34 SN40 SN44 SN53
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+* Wrogość
+
+RELIABILITY
+  /VARIABLES=SN2 SN9 SN11 SN37 SN38 SN56
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+* Wina
+
+RELIABILITY
+  /VARIABLES=SN15 SN32 SN42 SN46 SN51 SN60
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+* Smutek
+
+RELIABILITY
+  /VARIABLES=SN16 SN24 SN29 SN35 SN48
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+* Dobroduszność
+
+RELIABILITY
+  /VARIABLES=SN1 SN12 SN22 SN33 SN37 SN41 SN47 SN58
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+* Pewność siebie
+
+RELIABILITY
+  /VARIABLES=SN6 SN8 SN14 SN28 SN39 SN57
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+* Uważność
+
+RELIABILITY
+  /VARIABLES=SN3 SN25 SN52 SN59
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+* Nieśmiałość
+
+RELIABILITY
+  /VARIABLES=SN4 SN23 SN30 SN49
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+* Zmęczenie
+
+RELIABILITY
+  /VARIABLES=SN5 SN19 SN36 SN45
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+* Spokój
+
+RELIABILITY
+  /VARIABLES=SN10 SN17 SN43
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+* Zdziwienie
+
+RELIABILITY
+  /VARIABLES=SN7 SN20 SN54
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.

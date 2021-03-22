@@ -1,0 +1,59 @@
+﻿* Encoding: UTF-8.
+
+* Czynnik 1: Sabotaż – obejmujący pozycje 1, 2, 5, 6, 7,  8, 16. 
+* Czynnik 2: Nadużycia – obejmujący pozycje 9, 14, 15, 19, 21, 23, 24, 25, 26, 27, 28, 29, 31, 32.
+* Czynnik 3: Kradzieże – obejmujący pozycje 17, 18, 20, 22, 30. 
+* Czynnik 4: Wycofanie – obejmujący pozycje 3, 4, 10, 11, 12, 13.
+
+
+* Formowanie skali
+
+COMPUTE CWBC_Sabotaż = sum(CWBC1, CWBC2, CWBC5, CWBC6, CWBC7, CWBC8, CWBC16).
+COMPUTE CWBC_Nadużycia = sum(CWBC9, CWBC14, CWBC15, CWBC19, CWBC21, CWBC23, 
+CWBC24, CWBC25, CWBC26, CWBC27, CWBC28, CWBC29, CWBC31, CWBC32).
+COMPUTE CWBC_Kradzieże = sum(CWBC17, CWBC18, CWBC20, CWBC22, CWBC30).
+COMPUTE CWBC_Wycofanie = sum(CWBC3, CWBC4, CWBC10, CWBC11, CWBC12, CWBC13).
+COMPUTE CWBC = sum(CWBC_Sabotaż, CWBC_Nadużycia, CWBC_Kradzieże, CWBC_Wycofanie).
+EXECUTE.
+
+
+**************************************************************************
+* Rzetelności skali
+**************************************************************************
+
+/* CWBC_Sabotaż */
+
+RELIABILITY
+  /VARIABLES=CWBC1 CWBC2 CWBC5 CWBC6 CWBC7 CWBC8 CWBC16
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+
+/* CWBC_Nadużycia  */.
+RELIABILITY
+  /VARIABLES=CWBC9 CWBC14 CWBC15 CWBC19 CWBC21 CWBC23 
+CWBC24 CWBC25 CWBC26 CWBC27 CWBC28 CWBC29 CWBC31 CWBC32
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+/* CWBC_Kradzieże  */.
+RELIABILITY
+  /VARIABLES=CWBC17 CWBC18 CWBC20 CWBC22 CWBC30
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+/* CWBC_Wycofanie */.
+RELIABILITY
+  /VARIABLES=CWBC3 CWBC4 CWBC10 CWBC11 CWBC12 CWBC13
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+

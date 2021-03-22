@@ -1,0 +1,128 @@
+﻿
+ * IPIP-BFM-20
+Topolewska, E., Skimina, E., Strus, W., Cieciuch, J., Rowiński, T. (2014). Krótki kwestionariusz do pomiaru Wielkiej Piątki IPIP-BFM-20. Roczniki Psychologiczne, 17(2), 367-384.
+
+
+**************************************************************************
+* Odwracanie itemów i obliczanie skal
+**************************************************************************
+
+RECODE IPIP9 IPIP19 IPIP6 IPIP16 IPIP3 IPIP13 IPIP2 IPIP12 IPIP10 IPIP20 (1=5) (2=4) (3=3) (4=2) (5=1) 
+INTO IPIP9R IPIP19R IPIP6R IPIP16R IPIP3R IPIP13R IPIP2R IPIP12R IPIP10R IPIP20R.
+EXECUTE.
+
+* Skale uśrednione
+
+COMPUTE ipipEKST=MEAN(IPIP1, IPIP6R, IPIP11, IPIP16R).
+COMPUTE ipipUGOD=MEAN(IPIP2R, IPIP7, IPIP12R, IPIP17).
+COMPUTE ipipSUM=MEAN(IPIP3R ,IPIP8, IPIP13R, IPIP18).
+COMPUTE ipipSTAB=MEAN(IPIP4, IPIP9R, IPIP19R, IPIP14).
+COMPUTE ipipINTEL=MEAN(IPIP5, IPIP10R, IPIP15, IPIP20R).
+EXECUTE.
+
+
+* Skale zsumowane
+
+COMPUTE ipipEKST=SUM(IPIP1, IPIP6R, IPIP11, IPIP16R).
+COMPUTE ipipUGOD=SUM(IPIP2R, IPIP7, IPIP12R, IPIP17).
+COMPUTE ipipSUM=SUM(IPIP3R ,IPIP8, IPIP13R, IPIP18).
+COMPUTE ipipSTAB=SUM(IPIP4, IPIP9R, IPIP19R, IPIP14).
+COMPUTE ipipINTEL=SUM(IPIP5, IPIP10R, IPIP15, IPIP20R).
+EXECUTE.
+
+
+VARIABLE LABELS  ipipEKST 'Ekstrawersja' ipipUGOD 'Ugodowość' ipipSUM 'Sumienność' ipipSTAB 'Stabilność emocjonalna'  ipipINTEL 'Intelekt'.
+execute.
+
+
+**************************************************************************
+* Rzetelności skal
+**************************************************************************
+
+
+
+RELIABILITY
+  /VARIABLES=LN1 LN2R LN3 LN4R LN5 LN6R LN7 LN8R LN9 LN10R LN11R LN12 LN13 LN14
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /SUMMARY=TOTAL.
+
+
+*
+* Obliczanie rzetelności podskal
+* Podskala Nieaktywności
+
+RELIABILITY
+  /VARIABLES=LN2R LN4R LN6R LN8R LN10R LN11R
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /SUMMARY=TOTAL.
+
+
+* Podskala Zniechęcenia
+
+RELIABILITY
+  /VARIABLES=LN5 LN7 LN3 LN9 LN13
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /SUMMARY=TOTAL.
+
+
+* Podskala Wyciszenia behawioralnego
+
+RELIABILITY
+  /VARIABLES=LN1 LN12 LN14
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /SUMMARY=TOTAL.
+
+
+*************************************************************************
+
+
+* Ekstrawersja
+
+RELIABILITY
+  /VARIABLES=IPIP1 IPIP6R IPIP11 IPIP16R
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+* Ugodowość
+
+RELIABILITY
+  /VARIABLES=IPIP2R IPIP7 IPIP12R IPIP17
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+* Sumienność
+
+RELIABILITY
+  /VARIABLES=IPIP3R IPIP8 IPIP13R IPIP18
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+* Stabilność
+
+RELIABILITY
+  /VARIABLES=IPIP4 IPIP9R IPIP19R IPIP14
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+* Intelekt (Otwartość na dośw.)
+
+RELIABILITY
+  /VARIABLES=IPIP5 IPIP10R IPIP15 IPIP20R
+  /SCALE('ALL VARIABLES') ALL
+  /MODEL=ALPHA
+  /STATISTICS=DESCRIPTIVE
+  /SUMMARY=TOTAL.
+
+
